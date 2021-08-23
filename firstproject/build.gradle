@@ -16,3 +16,24 @@ task firstTask{
     println "Bye from Groovy Task - Configuration Phase"
 }
 println "End"
+
+
+task deployToStage{
+    doLast(){
+        println "Deployed to STAGE !"
+    }
+
+}
+task deployToProd{
+    doLast(){
+        println "Deployed to PROD !"
+    }
+}
+task cleanCache{
+    doLast(){
+        println "Clean Cache !"
+    }
+}
+
+deployToProd.dependsOn deployToStage
+deployToProd.finalizedBy cleanCache
